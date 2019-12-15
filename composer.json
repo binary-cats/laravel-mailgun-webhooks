@@ -1,0 +1,62 @@
+{
+    "name": "binary-cats/laravel-mailgun-webhooks",
+    "description": "Handle mailgun webhooks in a Laravel application",
+    "keywords": [
+        "binary-cats",
+        "laravel-mailgun-webhooks"
+    ],
+    "homepage": "https://bitbucket.org/binary-cats/laravel-mailgun-webhooks",
+    "license": "MIT",
+    "version":"1.0",
+    "authors": [
+        {
+            "name": "Cyrill Kalita",
+            "email": "cyrill.kalita@gmail.com",
+            "homepage": "https://bitbucket.com/binary-cats",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "illuminate/support": "~5.8.0|^6.0",
+        "spatie/laravel-webhook-client": "^2.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "~3.8.0|^4.0",
+        "phpunit/phpunit": "^8.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "BinaryCats\\MailgunWebhooks\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BinaryCats\\MailgunWebhooks\\Tests\\": "tests"
+        }
+    },
+    "suggest": {
+            "binary-cats/laravel-mail-helpers": "^6.0"
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit --color=always",
+        "check": [
+            "php-cs-fixer fix --ansi --dry-run --diff",
+            "phpcs --report-width=200 --report-summary  --report-full app/ tests/ --standard=PSR2 -n",
+            "phpmd src/,tests/ text ./phpmd.xml.dist"
+        ],
+        "fix": [
+            "php-cs-fixer fix --ansi"
+        ]
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "BinaryCats\\MailgunWebhooks\\MailgunWebhooksServiceProvider"
+            ]
+        }
+    }
+}
