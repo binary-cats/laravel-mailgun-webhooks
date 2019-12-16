@@ -3,6 +3,7 @@
     "description": "Handle Mailgun webhooks in a Laravel application",
     "keywords": [
         "binary-cats",
+        "laravel",
         "laravel-mailgun-webhooks"
     ],
     "homepage": "https://bitbucket.org/binary-cats/laravel-mailgun-webhooks",
