@@ -9,7 +9,6 @@
     ],
     "homepage": "https://bitbucket.org/binary-cats/laravel-mailgun-webhooks",
     "license": "MIT",
-    "version":"1.0",
     "authors": [
         {
             "name": "Cyrill Kalita",
@@ -44,7 +43,7 @@
         "test": "vendor/bin/phpunit --color=always",
         "check": [
             "php-cs-fixer fix --ansi --dry-run --diff",
-            "phpcs --report-width=200 --report-summary  --report-full app/ tests/ --standard=PSR2 -n",
+            "phpcs --report-width=200 --report-summary  --report-full src/ tests/ --standard=PSR2 -n",
             "phpmd src/,tests/ text ./phpmd.xml.dist"
         ],
         "fix": [
