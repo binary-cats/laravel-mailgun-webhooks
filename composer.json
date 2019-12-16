@@ -4,7 +4,8 @@
     "keywords": [
         "binary-cats",
         "laravel",
-        "laravel-mailgun-webhooks"
+        "mailgun",
+        "webhook"
     ],
     "homepage": "https://bitbucket.org/binary-cats/laravel-mailgun-webhooks",
     "license": "MIT",
