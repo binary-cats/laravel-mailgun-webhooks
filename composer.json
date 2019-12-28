@@ -7,13 +7,13 @@
         "mailgun",
         "webhook"
     ],
-    "homepage": "https://bitbucket.org/binary-cats/laravel-mailgun-webhooks",
+    "homepage": "https://github.com/binary-cats/laravel-mailgun-webhooks",
     "license": "MIT",
     "authors": [
         {
             "name": "Cyrill Kalita",
             "email": "cyrill.kalita@gmail.com",
-            "homepage": "https://bitbucket.com/binary-cats",
+            "homepage": "https://github.com/binary-cats",
             "role": "Developer"
         }
     ],

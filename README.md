@@ -288,7 +288,7 @@ You're free to use this package, but if it makes it to your production environme
 
 ## Credits
 
-- [Cyrill Kalita](https://bitbucket.com/binarycats)
+- [Cyrill Kalita](https://github.com/binary-cats)
 - [All Contributors](../../contributors)
 
 Big shout-out to [Spatie](https://spatie.be/) for their work, which is a huge inspiration.
