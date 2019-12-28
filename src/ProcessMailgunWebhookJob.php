@@ -9,14 +9,14 @@ use Spatie\WebhookClient\ProcessWebhookJob;
 class ProcessMailgunWebhookJob extends ProcessWebhookJob
 {
     /**
-     * Name of the payload key to contain the type of event
+     * Name of the payload key to contain the type of event.
      *
      * @var string
      */
     protected $key = 'event-data.event';
 
     /**
-     * Handle the process
+     * Handle the process.
      *
      * @return void
      */

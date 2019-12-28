@@ -8,7 +8,7 @@ use Illuminate\Support\ServiceProvider;
 class MailgunWebhooksServiceProvider extends ServiceProvider
 {
     /**
-     * Boot application services
+     * Boot application services.
      *
      * @return void
      */

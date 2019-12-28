@@ -2,9 +2,9 @@
 
 namespace BinaryCats\MailgunWebhooks\Tests;
 
+use BinaryCats\MailgunWebhooks\ProcessMailgunWebhookJob;
 use Illuminate\Support\Facades\Event;
 use Spatie\WebhookClient\Models\WebhookCall;
-use BinaryCats\MailgunWebhooks\ProcessMailgunWebhookJob;
 
 class MailgunWebhookCallTest extends TestCase
 {
@@ -28,7 +28,7 @@ class MailgunWebhookCallTest extends TestCase
                 'event-data' => [
                     'event' => 'my.type',
                     'key' => 'value',
-                ]
+                ],
             ],
         ]);
 

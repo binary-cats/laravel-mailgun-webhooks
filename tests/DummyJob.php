@@ -7,14 +7,14 @@ use Spatie\WebhookClient\Models\WebhookCall;
 class DummyJob
 {
     /**
-     * Bind the implementation
+     * Bind the implementation.
      *
      * @var Spatie\WebhookClient\Models\WebhookCall
      */
     public $webhookCall;
 
     /**
-     * Create new Job
+     * Create new Job.
      *
      * @param Spatie\WebhookClient\Models\WebhookCall $webhookCall
      */
@@ -24,7 +24,7 @@ class DummyJob
     }
 
     /**
-     * Handle the job
+     * Handle the job.
      *
      * @return void
      */

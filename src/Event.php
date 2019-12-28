@@ -3,19 +3,18 @@
 namespace BinaryCats\MailgunWebhooks;
 
 use BinaryCats\MailgunWebhooks\Contracts\WebhookEvent;
-use Illuminate\Support\Arr;
 
 class Event implements WebhookEvent
 {
     /**
-     * Attributes from the event
+     * Attributes from the event.
      *
      * @var array
      */
     public $attributes = [];
 
     /**
-     * Create new Event
+     * Create new Event.
      *
      * @param array $attributes
      */
@@ -25,11 +24,11 @@ class Event implements WebhookEvent
     }
 
     /**
-     * Construct the event
+     * Construct the event.
      *
      * @return Event
      */
-    public static function constructFrom($data) : Event
+    public static function constructFrom($data) : self
     {
         return new static($data);
     }
