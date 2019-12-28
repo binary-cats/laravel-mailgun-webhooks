@@ -2,12 +2,10 @@
 
 namespace BinaryCats\MailgunWebhooks;
 
-use BinaryCats\MailgunWebhooks\Exceptions\UnexpectedValueException;
-
 class Webhook
 {
     /**
-     * Validate and raise an appropriate event
+     * Validate and raise an appropriate event.
      *
      * @param  $payload
      * @param  array $signature
@@ -16,9 +14,9 @@ class Webhook
      */
     public static function constructEvent(array $payload, array $signature, string $secret) : Event
     {
-        # verify we are good, else throw an expection
+        // verify we are good, else throw an expection
         WebhookSignature::make($signature, $secret)->verify();
-        # Make an event
+        // Make an event
         return Event::constructFrom($payload);
     }
 }

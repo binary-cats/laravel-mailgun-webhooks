@@ -2,12 +2,12 @@
 
 namespace BinaryCats\MailgunWebhooks\Tests;
 
-use Exception;
-use CreateWebhookCallsTable;
-use Illuminate\Foundation\Exceptions\Handler;
-use Illuminate\Contracts\Debug\ExceptionHandler;
-use Orchestra\Testbench\TestCase as OrchestraTestCase;
 use BinaryCats\MailgunWebhooks\MailgunWebhooksServiceProvider;
+use CreateWebhookCallsTable;
+use Exception;
+use Illuminate\Contracts\Debug\ExceptionHandler;
+use Illuminate\Foundation\Exceptions\Handler;
+use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 abstract class TestCase extends OrchestraTestCase
 {
@@ -56,8 +56,7 @@ abstract class TestCase extends OrchestraTestCase
 
     protected function disableExceptionHandling()
     {
-        $this->app->instance(ExceptionHandler::class, new class extends Handler
-        {
+        $this->app->instance(ExceptionHandler::class, new class extends Handler {
             public function __construct()
             {
             }
@@ -86,9 +85,9 @@ abstract class TestCase extends OrchestraTestCase
         $token = hash_hmac('sha256', $timestampedPayload, $secret);
 
         return [
-            "timestamp" => $timestamp,
-            "token" => $token,
-            "signature" => hash_hmac('sha256', "{$timestamp}.{$token}", $secret),
+            'timestamp' => $timestamp,
+            'token' => $token,
+            'signature' => hash_hmac('sha256', "{$timestamp}.{$token}", $secret),
         ];
     }
 }

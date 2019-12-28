@@ -11,14 +11,14 @@ class HandleDelivered
     use Dispatchable, SerializesModels;
 
     /**
-     * Bind the implementation
+     * Bind the implementation.
      *
      * @var Spatie\WebhookClient\Models\WebhookCall
      */
     protected $webhookCall;
 
     /**
-     * Create new Job
+     * Create new Job.
      *
      * @param Spatie\WebhookClient\Models\WebhookCall $webhookCall
      */
@@ -34,6 +34,5 @@ class HandleDelivered
      */
     public function handle()
     {
-
     }
 }

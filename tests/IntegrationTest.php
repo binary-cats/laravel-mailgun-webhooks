@@ -2,9 +2,9 @@
 
 namespace BinaryCats\MailgunWebhooks\Tests;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Arr;
 use Spatie\WebhookClient\Models\WebhookCall;
 
 class IntegrationTest extends TestCase
@@ -29,7 +29,7 @@ class IntegrationTest extends TestCase
             'event-data' => [
                 'event' => 'my.type',
                 'key' => 'value',
-            ]
+            ],
         ];
 
         Arr::set($payload, 'signature', $this->determineMailgunSignature($payload));
@@ -63,7 +63,7 @@ class IntegrationTest extends TestCase
             'event-data' => [
                 'event' => 'my.type',
                 'key' => 'value',
-            ]
+            ],
         ];
 
         Arr::set($payload, 'signature', 'invalid_signature');
@@ -119,7 +119,7 @@ class IntegrationTest extends TestCase
             'event-data' => [
                 'event' => 'my.type',
                 'key' => 'value',
-            ]
+            ],
         ];
 
         Arr::set($payload, 'signature', $this->determineMailgunSignature($payload));

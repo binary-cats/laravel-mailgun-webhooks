@@ -10,7 +10,7 @@ use Spatie\WebhookClient\WebhookProfile\ProcessEverythingWebhookProfile;
 class MailgunWebhooksController
 {
     /**
-     * Invoke controller method
+     * Invoke controller method.
      *
      * @param  \Illuminate\Http\Request $request
      * @param  string|null $configKey

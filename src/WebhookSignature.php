@@ -2,27 +2,26 @@
 
 namespace BinaryCats\MailgunWebhooks;
 
-use BinaryCats\MailgunWebhooks\Exceptions\WebhookFailed;
 use Illuminate\Support\Arr;
 
 class WebhookSignature
 {
     /**
-     * Signature array
+     * Signature array.
      *
      * @var array
      */
     protected $signatureArray;
 
     /**
-     * Signature secret
+     * Signature secret.
      *
      * @var string
      */
     protected $secret;
 
     /**
-     * Create new Signature
+     * Create new Signature.
      *
      * @param array  $signatureArray
      * @param string $secret
@@ -34,7 +33,7 @@ class WebhookSignature
     }
 
     /**
-     * Statis accessor into the class constructor
+     * Statis accessor into the class constructor.
      *
      * @param  array  $signatureArray
      * @param  string $secret
@@ -46,9 +45,9 @@ class WebhookSignature
     }
 
     /**
-     * True if the signature is valid
+     * True if the signature is valid.
      *
-     * @return boolean
+     * @return bool
      */
     public function verify() : bool
     {
@@ -56,7 +55,7 @@ class WebhookSignature
     }
 
     /**
-     * Compute expected signature
+     * Compute expected signature.
      *
      * @return string
      */
@@ -71,7 +70,7 @@ class WebhookSignature
     }
 
     /**
-     * Magically access items from signature array
+     * Magically access items from signature array.
      *
      * @param  string $attribute
      * @return mixed
