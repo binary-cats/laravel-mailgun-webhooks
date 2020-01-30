@@ -47,9 +47,9 @@ return [
 
     /*
      * The classname of the model to be used. The class should equal or extend
-     * BinaryCats\MailgunWebhooks\WebhookCall which is a child of Spatie\WebhookClient\Models\WebhookCall
+     * Spatie\WebhookClient\Models\WebhookCall
      */
-    'model' => \BinaryCats\MailgunWebhooks\WebhookCall::class,
+    'model' => \Spatie\WebhookClient\Models\WebhookCall::class,
 
     /*
      * The classname of the model to be used. The class should equal or extend
@@ -77,17 +77,18 @@ php artisan migrate
 ### Routing
 Finally, take care of the routing: At [the Mailgun dashboard](https://app.mailgun.com/app/sending/domains) you must configure at what url Mailgun webhooks should hit your app. In the routes file of your app you must pass that route to `Route::mailgunWebhooks()`:
 
-I like to group functionality by domain, so would suggest `webwooks\mailgun`
+I like to group functionality by domain, so I would suggest `webwooks/mailgun` (especially if you plan to have more webhooks), but it is up to you.
 
 ```php
-Route::mailgunWebhooks('webwooks\mailgun');
+# routes\web.php
+Route::mailgunWebhooks('webwooks/mailgun');
 ```
 
 Behind the scenes this will register a `POST` route to a controller provided by this package. Because Mailgun has no way of getting a csrf-token, you must add that route to the `except` array of the `VerifyCsrfToken` middleware:
 
 ```php
 protected $except = [
-    'webwooks\mailgun',
+    'webwooks/mailgun',
 ];
 ```
 
@@ -118,13 +119,13 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use BinaryCats\MailgunWebhooks\WebhookCall;
+use Spatie\WebhookClient\Models\WebhookCall;
 
-class HandleDeliveredSource implements ShouldQueue
+class HandleDelivered implements ShouldQueue
 {
     use InteractsWithQueue, Queueable, SerializesModels;
 
-    /** @var \BinaryCats\MailgunWebhooks\WebhookCall */
+    /** @var \Spatie\WebhookClient\Models\WebhookCall */
     public $webhookCall;
 
     public function __construct(WebhookCall $webhookCall)
@@ -206,7 +207,7 @@ The above example is only one way to handle events in Laravel. To learn the othe
 All incoming webhook requests are written to the database. This is incredibly valuable when something goes wrong while handling a webhook call. You can easily retry processing the webhook call, after you've investigated and fixed the cause of failure, like this:
 
 ```php
-use BinaryCats\MailgunWebhooks\WebhookCall;
+use Spatie\WebhookClient\Models\WebhookCall;
 use BinaryCats\MailgunWebhooks\ProcessMailgunWebhookJob;
 
 dispatch(new ProcessMailgunWebhookJob(WebhookCall::find($id)));
@@ -240,24 +241,24 @@ When needed might want to the package to handle multiple endpoints and secrets. 
 If you are using the `Route::mailgunWebhooks` macro, you can append the `configKey` as follows:
 
 ```php
-Route::mailgunWebhooks('webhook-url/{configKey}');
+Route::mailgunWebhooks('webwooks/mailgun/{configKey}');
 ```
 
 Alternatively, if you are manually defining the route, you can add `configKey` like so:
 
 ```php
-Route::post('webhook-url/{configKey}', 'BinaryCats\MailgunWebhooks\MailgunWebhooksController');
+Route::post('webwooks/mailgun/{configKey}', 'BinaryCats\MailgunWebhooks\MailgunWebhooksController');
 ```
 
-If this route parameter is present the verify middleware will look for the secret using a different config key, by appending the given the parameter value to the default config key. E.g. If Mailgun posts to `webhook-url/my-named-secret` you'd add a new config named `signing_secret_my-named-secret`.
+If this route parameter is present the verify middleware will look for the secret using a different config key, by appending the given the parameter value to the default config key. E.g. If Mailgun posts to `webwooks/mailgun/my-named-secret` you'd add a new config named `signing_secret_my-named-secret`.
 
 Example config might look like:
 
 ```php
-// secret for when Mailgun posts to webhook-url/account
+// secret for when Mailgun posts to webwooks/mailgun/account
 'signing_secret_account' => 'whsec_abc',
-// secret for when Mailgun posts to webhook-url/connect
-'signing_secret_connect' => 'whsec_123',
+// secret for when Mailgun posts to webwooks/mailgun/my-named-secret
+'signing_secret_my-named-secret' => 'whsec_123',
 ```
 
 ### About Mailgun
