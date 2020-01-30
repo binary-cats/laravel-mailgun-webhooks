@@ -49,7 +49,7 @@ class WebhookSignature
      *
      * @return bool
      */
-    public function verify() : bool
+    public function verify(): bool
     {
         return hash_equals($this->signature, $this->computeSignature());
     }
