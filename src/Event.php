@@ -28,7 +28,7 @@ class Event implements WebhookEvent
      *
      * @return Event
      */
-    public static function constructFrom($data) : self
+    public static function constructFrom($data): self
     {
         return new static($data);
     }

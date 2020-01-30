@@ -7,7 +7,7 @@ use Spatie\WebhookClient\Models\WebhookCall;
 
 class WebhookFailed extends Exception
 {
-    public static function signingSecretNotSet() : self
+    public static function signingSecretNotSet(): self
     {
         return new static('The webhook signing secret is not set. Make sure that the `signing_secret` config key is set to the correct value.');
     }
