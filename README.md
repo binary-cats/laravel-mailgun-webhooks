@@ -77,18 +77,18 @@ php artisan migrate
 ### Routing
 Finally, take care of the routing: At [the Mailgun dashboard](https://app.mailgun.com/app/sending/domains) you must configure at what url Mailgun webhooks should hit your app. In the routes file of your app you must pass that route to `Route::mailgunWebhooks()`:
 
-I like to group functionality by domain, so I would suggest `webwooks/mailgun` (especially if you plan to have more webhooks), but it is up to you.
+I like to group functionality by domain, so I would suggest `webhooks/mailgun` (especially if you plan to have more webhooks), but it is up to you.
 
 ```php
 # routes\web.php
-Route::mailgunWebhooks('webwooks/mailgun');
+Route::mailgunWebhooks('webhooks/mailgun');
 ```
 
 Behind the scenes this will register a `POST` route to a controller provided by this package. Because Mailgun has no way of getting a csrf-token, you must add that route to the `except` array of the `VerifyCsrfToken` middleware:
 
 ```php
 protected $except = [
-    'webwooks/mailgun',
+    'webhooks/mailgun',
 ];
 ```
 
@@ -241,23 +241,23 @@ When needed might want to the package to handle multiple endpoints and secrets. 
 If you are using the `Route::mailgunWebhooks` macro, you can append the `configKey` as follows:
 
 ```php
-Route::mailgunWebhooks('webwooks/mailgun/{configKey}');
+Route::mailgunWebhooks('webhooks/mailgun/{configKey}');
 ```
 
 Alternatively, if you are manually defining the route, you can add `configKey` like so:
 
 ```php
-Route::post('webwooks/mailgun/{configKey}', 'BinaryCats\MailgunWebhooks\MailgunWebhooksController');
+Route::post('webhooks/mailgun/{configKey}', 'BinaryCats\MailgunWebhooks\MailgunWebhooksController');
 ```
 
-If this route parameter is present the verify middleware will look for the secret using a different config key, by appending the given the parameter value to the default config key. E.g. If Mailgun posts to `webwooks/mailgun/my-named-secret` you'd add a new config named `signing_secret_my-named-secret`.
+If this route parameter is present the verify middleware will look for the secret using a different config key, by appending the given the parameter value to the default config key. E.g. If Mailgun posts to `webhooks/mailgun/my-named-secret` you'd add a new config named `signing_secret_my-named-secret`.
 
 Example config might look like:
 
 ```php
-// secret for when Mailgun posts to webwooks/mailgun/account
+// secret for when Mailgun posts to webhooks/mailgun/account
 'signing_secret_account' => 'whsec_abc',
-// secret for when Mailgun posts to webwooks/mailgun/my-named-secret
+// secret for when Mailgun posts to webhooks/mailgun/my-named-secret
 'signing_secret_my-named-secret' => 'whsec_123',
 ```
 
