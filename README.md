@@ -144,6 +144,8 @@ class HandleDelivered implements ShouldQueue
 
 Spatie highly recommends that you make this job queueable, because this will minimize the response time of the webhook requests. This allows you to handle more Mailgun webhook requests and avoid timeouts.
 
+Just keep in mind that mailgun places both `signature` and `event-data` into response body.
+
 After having created your job you must register it at the `jobs` array in the `mailgun-webhooks.php` config file. The key should be the name of [mailgun event type](https://documentation.mailgun.com/en/latest/api-webhooks.html) where but with the `.` replaced by `_`. The value should be the fully qualified classname.
 
 ```php
@@ -183,7 +185,7 @@ Here's an example of such a listener:
 namespace App\Listeners;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
-use BinaryCats\MailgunWebhooks\WebhookCall;
+use Spatie\WebhookClient\Models\WebhookCall;
 
 class DelieveredSource implements ShouldQueue
 {
