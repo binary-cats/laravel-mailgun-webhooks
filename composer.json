@@ -5,7 +5,7 @@
         "binary-cats",
         "laravel",
         "mailgun",
-        "webhook"
+        "webhooks"
     ],
     "homepage": "https://github.com/binary-cats/laravel-mailgun-webhooks",
     "license": "MIT",
