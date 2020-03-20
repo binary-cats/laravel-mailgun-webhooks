@@ -37,7 +37,7 @@ class WebhookSignature
      *
      * @param  array  $signatureArray
      * @param  string $secret
-     * @return new static
+     * @return WebhookSignature static
      */
     public static function make($signatureArray, string $secret)
     {
