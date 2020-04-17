@@ -6,7 +6,10 @@
 
 [Mailgun](https://mailgun.com) can notify your application of mail events using webhooks. This package can help you handle those webhooks. Out of the box it will verify the Mailgun signature of all incoming requests. All valid calls will be logged to the database. You can easily define jobs or events that should be dispatched when specific events hit your app.
 
-This package will not handle what should be done after the webhook request has been validated and the right job or event is called. You should still code up any work (eg. regarding payments) yourself.
+This package will not handle what should be done after the webhook request has been validated and the right job or event is called. You should still code up any work (eg. what should happen) yourself.
+
+<p align="center"><img src="https://repository-images.githubusercontent.com/230519748/7af61180-28c0-11ea-9377-a471da1dbb32" width="400"></p>
+
 
 Before using this package we highly recommend reading [the entire documentation on webhooks over at Mailgun](https://documentation.mailgun.com/en/latest/api-webhooks.html).
 
