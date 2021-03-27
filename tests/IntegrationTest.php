@@ -56,6 +56,43 @@ class IntegrationTest extends TestCase
         $this->assertEquals($webhookCall->id, cache('dummyjob')->id);
     }
 
+    public function in_will_ignore_empty_reququest()
+    {
+        $payload = [];
+
+        Arr::set($payload, 'signature', $this->determineMailgunSignature($payload));
+
+        $this
+            ->postJson('mailgun-webhooks', $payload)
+            ->assertStatus(422);
+
+        $this->assertCount(0, WebhookCall::get());
+
+        Event::assertNotDispatched('mailgun-webhooks::my.type');
+
+        $this->assertNull(cache('dummyjob'));
+    }
+
+    public function in_will_ignore_unsinged_reququest()
+    {
+        $payload = [
+            'event-data' => [
+                'event' => 'my.type',
+                'key' => 'value',
+            ],
+        ];
+
+        $this
+            ->postJson('mailgun-webhooks', $payload)
+            ->assertStatus(422);
+
+        $this->assertCount(0, WebhookCall::get());
+
+        Event::assertNotDispatched('mailgun-webhooks::my.type');
+
+        $this->assertNull(cache('dummyjob'));
+    }
+
     /** @test */
     public function a_request_with_an_invalid_signature_wont_be_logged()
     {
@@ -70,7 +107,7 @@ class IntegrationTest extends TestCase
 
         $this
             ->postJson('mailgun-webhooks', $payload)
-            ->assertStatus(500);
+            ->assertStatus(422);
 
         $this->assertCount(0, WebhookCall::get());
 
