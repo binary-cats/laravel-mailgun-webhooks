@@ -33,7 +33,8 @@ class MailgunSignatureValidator implements SignatureValidator
      */
     public function isValid(Request $request, WebhookConfig $config): bool
     {
-        $signature = $request->get('signature', []);
+        $signature = $this->signature($request);
+
         $secret = $config->signingSecret;
 
         try {
@@ -45,5 +46,22 @@ class MailgunSignatureValidator implements SignatureValidator
         }
 
         return true;
+    }
+
+    /**
+     * Validate the incoming signature' schema
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return array
+     */
+    protected function signature(Request $request): array
+    {
+        $validated = $request->validate([
+            'signature.signature' => 'bail|required',
+            'signature.timestamp' => 'required',
+            'signature.token' => 'required',
+        ]);
+
+        return $validated['signature'];
     }
 }

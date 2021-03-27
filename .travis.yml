@@ -25,6 +25,14 @@ matrix:
           env: LARAVEL='6.*' TESTBENCH='4.*' COMPOSER_FLAGS='--prefer-stable'
         - php: 7.3
           env: LARAVEL='7.*' TESTBENCH='5.*' COMPOSER_FLAGS='--prefer-stable'
+        - php: 7.4
+          env: LARAVEL='7.*' TESTBENCH='5.*' COMPOSER_FLAGS='--prefer-stable'
+        - php: 7.4
+          env: LARAVEL='7.*' TESTBENCH='6.*' COMPOSER_FLAGS='--prefer-stable'
+        - php: 7.4
+          env: LARAVEL='8.*' TESTBENCH='6.*' COMPOSER_FLAGS='--prefer-stable'
+        - php: 8.0
+          env: LARAVEL='8.*' TESTBENCH='6.*' COMPOSER_FLAGS='--prefer-stable'
 
 before_install:
     - travis_retry composer self-update
