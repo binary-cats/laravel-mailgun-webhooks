@@ -49,7 +49,7 @@ class MailgunSignatureValidator implements SignatureValidator
     }
 
     /**
-     * Validate the incoming signature' schema
+     * Validate the incoming signature' schema.
      *
      * @param  \Illuminate\Http\Request $request
      * @return array
