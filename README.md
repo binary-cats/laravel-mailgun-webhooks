@@ -112,7 +112,7 @@ If something goes wrong during the webhook request the thrown exception will be 
 
 There are two ways this package enables you to handle webhook requests: you can opt to queue a job or listen to the events the package will fire.
 
-**The package does not handle legacy webhoos, as they have a different schema.** Let me know if this is something that is needed.
+**The package does not handle legacy webhooks, as they have a different schema.** Let me know if this is something that is needed.
 
 ### Handling webhook requests using jobs
 If you want to do something when a specific event type comes in you can define a job that does the work. Here's an example of such a job:
