@@ -2,20 +2,26 @@
 
 namespace BinaryCats\MailgunWebhooks;
 
+use BinaryCats\MailgunWebhooks\Exceptions\WebhookFailed;
+
 class Webhook
 {
     /**
      * Validate and raise an appropriate event.
      *
      * @param  $payload
-     * @param  array $signature
-     * @param  string $secret
+     * @param array $signature
+     * @param string $secret
      * @return BinaryCats\MailgunWebhooks\Event
+     * @throws WebhookFailed
      */
     public static function constructEvent(array $payload, array $signature, string $secret): Event
     {
         // verify we are good, else throw an expection
-        WebhookSignature::make($signature, $secret)->verify();
+        if (!WebhookSignature::make($signature, $secret)->verify()) {
+            throw WebhookFailed::invalidSignature();
+        }
+
         // Make an event
         return Event::constructFrom($payload);
     }
