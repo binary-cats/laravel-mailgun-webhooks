@@ -87,7 +87,7 @@ abstract class TestCase extends OrchestraTestCase
         return [
             'timestamp' => $timestamp,
             'token' => $token,
-            'signature' => hash_hmac('sha256', "{$timestamp}.{$token}", $secret),
+            'signature' => hash_hmac('sha256', "{$timestamp}{$token}", $secret),
         ];
     }
 }

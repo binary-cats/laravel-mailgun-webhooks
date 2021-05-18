@@ -159,7 +159,7 @@ class IntegrationTest extends TestCase
             ],
         ];
 
-        Arr::set($payload, 'signature', $this->determineMailgunSignature($payload));
+        Arr::set($payload, 'signature', $this->determineMailgunSignature($payload, 'somekey'));
 
         $this
             ->postJson('mailgun-webhooks/somekey', $payload)
