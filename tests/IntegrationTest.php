@@ -159,10 +159,38 @@ class IntegrationTest extends TestCase
             ],
         ];
 
-        Arr::set($payload, 'signature', $this->determineMailgunSignature($payload));
+        Arr::set($payload, 'signature', $this->determineMailgunSignature($payload, 'somekey'));
 
         $this
             ->postJson('mailgun-webhooks/somekey', $payload)
             ->assertSuccessful();
+    }
+
+
+    /** @test */
+    public function an_invalid_signature_value_generates_a_500_error()
+    {
+        $payload = [
+            'event-data' => [
+                'event' => 'my.type',
+                'key' => 'value',
+            ],
+        ];
+
+        Arr::set($payload, 'signature', [
+            'timestamp' => time(),
+            'token' => 'some token',
+            'signature' => 'invalid_signature'
+        ]);
+
+        $this
+            ->postJson('mailgun-webhooks', $payload)
+            ->assertStatus(500);
+
+        $this->assertCount(0, WebhookCall::get());
+
+        Event::assertNotDispatched('mailgun-webhooks::my.type');
+
+        $this->assertNull(cache('dummyjob'));
     }
 }
