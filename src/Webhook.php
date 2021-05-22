@@ -18,7 +18,7 @@ class Webhook
     public static function constructEvent(array $payload, array $signature, string $secret): Event
     {
         // verify we are good, else throw an expection
-        if (!WebhookSignature::make($signature, $secret)->verify()) {
+        if (! WebhookSignature::make($signature, $secret)->verify()) {
             throw WebhookFailed::invalidSignature();
         }
 
