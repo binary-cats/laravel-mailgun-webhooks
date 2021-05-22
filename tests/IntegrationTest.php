@@ -166,7 +166,6 @@ class IntegrationTest extends TestCase
             ->assertSuccessful();
     }
 
-
     /** @test */
     public function an_invalid_signature_value_generates_a_500_error()
     {
@@ -180,7 +179,7 @@ class IntegrationTest extends TestCase
         Arr::set($payload, 'signature', [
             'timestamp' => time(),
             'token' => 'some token',
-            'signature' => 'invalid_signature'
+            'signature' => 'invalid_signature',
         ]);
 
         $this
