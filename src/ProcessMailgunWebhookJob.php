@@ -46,7 +46,7 @@ class ProcessMailgunWebhookJob extends ProcessWebhookJob
     protected function determineJobClass(string $eventType): string
     {
         $jobConfigKey = str_replace('.', '_', $eventType);
-
-        return config("mailgun-webhooks.jobs.{$jobConfigKey}", '');
+        $jobConfigKey_lower = strtolower($jobConfigKey);
+        return config("mailgun-webhooks.jobs.{$jobConfigKey}", config("mailgun-webhooks.jobs.{$jobConfigKey_lower}", ''));
     }
 }
