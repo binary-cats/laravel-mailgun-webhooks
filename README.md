@@ -101,7 +101,7 @@ protected $except = [
 
 ## Usage
 
-Mailgun will send out webhooks for several event types. You can find the [full list of events types](https://documentation.mailgun.com/en/latest/api-webhooks.html) in Mailgun documentation.
+Mailgun will send out webhooks for several event types. You can find the [full list of events types](https://documentation.mailgun.com/en/latest/user_manual.html#events) in Mailgun documentation.
 
 Mailgun will sign all requests hitting the webhook url of your app. This package will automatically verify if the signature is valid. If it is not, the request was probably not sent by Mailgun.
 
@@ -153,7 +153,7 @@ Spatie highly recommends that you make this job queueable, because this will min
 
 Just keep in mind that mailgun places both `signature` and `event-data` into response body.
 
-After having created your job you must register it at the `jobs` array in the `mailgun-webhooks.php` config file. The key should be the name of [mailgun event type](https://documentation.mailgun.com/en/latest/api-webhooks.html) where but with the `.` replaced by `_`. The value should be the fully qualified classname.
+After having created your job you must register it at the `jobs` array in the `mailgun-webhooks.php` config file. The key should be the name of [mailgun event type](https://documentation.mailgun.com/en/latest/user_manual.html#events). The value should be the fully qualified classname.
 
 ```php
 // config/mailgun-webhooks.php
