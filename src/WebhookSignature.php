@@ -27,7 +27,7 @@ final class WebhookSignature
      * @param  string[]  $signatureArray
      * @param  string  $secret
      */
-    public function __construct(array $signatureArray , string $secret)
+    public function __construct(array $signatureArray, string $secret)
     {
         $this->signatureArray = $signatureArray;
         $this->secret = $secret;
@@ -37,7 +37,7 @@ final class WebhookSignature
      * Static accessor into the class constructor.
      *
      * @param  string[]  $signatureArray
-     * @param  string $secret
+     * @param  string  $secret
      * @return WebhookSignature static
      */
     public static function make($signatureArray, string $secret)
@@ -73,7 +73,7 @@ final class WebhookSignature
     /**
      * Magically access items from signature array.
      *
-     * @param  string $attribute
+     * @param  string  $attribute
      * @return mixed
      */
     public function __get($attribute)

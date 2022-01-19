@@ -16,7 +16,7 @@ final class Event implements WebhookEvent
     /**
      * Create new Event.
      *
-     * @param mixed[] $attributes
+     * @param  mixed[]  $attributes
      */
     public function __construct(array $attributes)
     {
@@ -24,9 +24,9 @@ final class Event implements WebhookEvent
     }
 
     /**
-     * Static event constructor
+     * Static event constructor.
      *
-     * @param mixed[] $data
+     * @param  mixed[]  $data
      * @return static
      */
     public static function constructFrom(array $data): self
