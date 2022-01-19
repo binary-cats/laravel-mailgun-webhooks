@@ -1,6 +1,6 @@
 <?php
 
-namespace BinaryCats\MailgunWebhooks\Tests;
+namespace Tests;
 
 use BinaryCats\MailgunWebhooks\MailgunWebhooksServiceProvider;
 use CreateWebhookCallsTable;
@@ -11,6 +11,9 @@ use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 abstract class TestCase extends OrchestraTestCase
 {
+    /**
+     * @return void
+     */
     public function setUp(): void
     {
         parent::setUp();
@@ -35,6 +38,9 @@ abstract class TestCase extends OrchestraTestCase
         config(['mailgun-webhooks.signing_secret' => 'test_signing_secret']);
     }
 
+    /**
+     * @return void
+     */
     protected function setUpDatabase()
     {
         include_once __DIR__.'/../vendor/spatie/laravel-webhook-client/database/migrations/create_webhook_calls_table.php.stub';
@@ -44,7 +50,6 @@ abstract class TestCase extends OrchestraTestCase
 
     /**
      * @param \Illuminate\Foundation\Application $app
-     *
      * @return array
      */
     protected function getPackageProviders($app)
@@ -54,6 +59,9 @@ abstract class TestCase extends OrchestraTestCase
         ];
     }
 
+    /**
+     * @return void
+     */
     protected function disableExceptionHandling()
     {
         $this->app->instance(ExceptionHandler::class, new class extends Handler
@@ -73,6 +81,11 @@ abstract class TestCase extends OrchestraTestCase
         });
     }
 
+    /**
+     * @param  array  $payload
+     * @param  string|null  $configKey
+     * @return array
+     */
     protected function determineMailgunSignature(array $payload, string $configKey = null): array
     {
         $secret = ($configKey) ?

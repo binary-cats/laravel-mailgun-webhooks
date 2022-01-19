@@ -1,6 +1,6 @@
 <?php
 
-namespace BinaryCats\MailgunWebhooks\Tests;
+namespace Tests;
 
 use Spatie\WebhookClient\Models\WebhookCall;
 
@@ -9,14 +9,14 @@ class DummyJob
     /**
      * Bind the implementation.
      *
-     * @var Spatie\WebhookClient\Models\WebhookCall
+     * @var \Spatie\WebhookClient\Models\WebhookCall
      */
-    public $webhookCall;
+    public WebhookCall $webhookCall;
 
     /**
      * Create new Job.
      *
-     * @param Spatie\WebhookClient\Models\WebhookCall $webhookCall
+     * @param \Spatie\WebhookClient\Models\WebhookCall $webhookCall
      */
     public function __construct(WebhookCall $webhookCall)
     {

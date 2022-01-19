@@ -10,24 +10,10 @@ use Spatie\WebhookClient\WebhookConfig;
 class MailgunSignatureValidator implements SignatureValidator
 {
     /**
-     * Bind the implemetation.
-     *
-     * @var Illuminate\Http\Request
-     */
-    protected $request;
-
-    /**
-     * Inject the config.
-     *
-     * @var Spatie\WebhookClient\WebhookConfig
-     */
-    protected $config;
-
-    /**
      * True if the signature has been valiates.
      *
-     * @param  Illuminate\Http\Request       $request
-     * @param  Spatie\WebhookClient\WebhookConfig $config
+     * @param  \Illuminate\Http\Request       $request
+     * @param  \Spatie\WebhookClient\WebhookConfig $config
      *
      * @return bool
      */
@@ -40,6 +26,7 @@ class MailgunSignatureValidator implements SignatureValidator
         try {
             Webhook::constructEvent($request->all(), $signature, $secret);
         } catch (Exception $exception) {
+            // make the app aware
             report($exception);
 
             return false;
@@ -52,7 +39,7 @@ class MailgunSignatureValidator implements SignatureValidator
      * Validate the incoming signature' schema.
      *
      * @param  \Illuminate\Http\Request $request
-     * @return array
+     * @return string[]
      */
     protected function signature(Request $request): array
     {

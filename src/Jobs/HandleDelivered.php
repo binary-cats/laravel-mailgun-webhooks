@@ -13,14 +13,14 @@ class HandleDelivered
     /**
      * Bind the implementation.
      *
-     * @var Spatie\WebhookClient\Models\WebhookCall
+     * @var \Spatie\WebhookClient\Models\WebhookCall
      */
-    protected $webhookCall;
+    protected WebhookCall $webhookCall;
 
     /**
      * Create new Job.
      *
-     * @param Spatie\WebhookClient\Models\WebhookCall $webhookCall
+     * @param \Spatie\WebhookClient\Models\WebhookCall $webhookCall
      */
     public function __construct(WebhookCall $webhookCall)
     {

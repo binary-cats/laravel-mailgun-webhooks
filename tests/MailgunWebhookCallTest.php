@@ -1,6 +1,6 @@
 <?php
 
-namespace BinaryCats\MailgunWebhooks\Tests;
+namespace Tests;
 
 use BinaryCats\MailgunWebhooks\ProcessMailgunWebhookJob;
 use Illuminate\Support\Facades\Event;

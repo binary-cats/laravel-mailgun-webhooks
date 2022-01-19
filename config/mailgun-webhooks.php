@@ -13,7 +13,10 @@ return [
      * here. The key is the name of the Mailgun event type with the `.` replaced by a `_`.
      *
      * You can find a list of Mailgun webhook types here:
-     * https://documentation.mailgun.com/en/latest/api-webhooks.html#webhooks.
+     * https://documentation.mailgun.com/en/latest/user_manual.html#events.
+     *
+     * The package will automatically convert the keys to lowercase, but you should
+     * be congnisant of the fact that array keys are case sensitive
      */
     'jobs' => [
         // 'delivered' => \BinaryCats\MailgunWebhooks\Jobs\HandleDelivered::class,

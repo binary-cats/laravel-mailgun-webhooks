@@ -245,7 +245,7 @@ class MyCustomMailgunWebhookJob extends ProcessMailgunWebhookJob
 ```
 ### Handling multiple signing secrets
 
-When needed might want to the package to handle multiple endpoints and secrets. Here's how to configurate that behaviour.
+When needed might want to the package to handle multiple endpoints and secrets. Here's how to configure that behaviour.
 
 If you are using the `Route::mailgunWebhooks` macro, you can append the `configKey` as follows:
 
@@ -259,7 +259,7 @@ Alternatively, if you are manually defining the route, you can add `configKey` l
 Route::post('webhooks/mailgun/{configKey}', 'BinaryCats\MailgunWebhooks\MailgunWebhooksController');
 ```
 
-If this route parameter is present the verify middleware will look for the secret using a different config key, by appending the given the parameter value to the default config key. E.g. If Mailgun posts to `webhooks/mailgun/my-named-secret` you'd add a new config named `signing_secret_my-named-secret`.
+If this route parameter is present verify middleware will look for the secret using a different config key, by appending the given the parameter value to the default config key. E.g. If Mailgun posts to `webhooks/mailgun/my-named-secret` you'd add a new config named `signing_secret_my-named-secret`.
 
 Example config might look like:
 

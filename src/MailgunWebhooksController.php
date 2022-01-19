@@ -30,8 +30,6 @@ class MailgunWebhooksController
             'process_webhook_job' => config('mailgun-webhooks.process_webhook_job'),
         ]);
 
-        (new WebhookProcessor($request, $webhookConfig))->process();
-
-        return response()->json(['message' => 'ok']);
+        return (new WebhookProcessor($request, $webhookConfig))->process();
     }
 }

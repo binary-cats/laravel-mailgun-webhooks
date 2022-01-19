@@ -1,6 +1,6 @@
 <?php
 
-namespace BinaryCats\MailgunWebhooks\Tests;
+namespace Tests;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Event;
@@ -19,6 +19,7 @@ class IntegrationTest extends TestCase
         Route::mailgunWebhooks('mailgun-webhooks/{configKey}');
 
         config(['mailgun-webhooks.jobs' => ['my_type' => DummyJob::class]]);
+
         cache()->clear();
     }
 
@@ -44,6 +45,38 @@ class IntegrationTest extends TestCase
 
         $this->assertEquals('my.type', $webhookCall->payload['event-data']['event']);
         $this->assertEquals($payload, $webhookCall->payload);
+        $this->assertNull($webhookCall->exception);
+
+        Event::assertDispatched('mailgun-webhooks::my.type', function ($event, $eventPayload) use ($webhookCall) {
+            $this->assertInstanceOf(WebhookCall::class, $eventPayload);
+            $this->assertEquals($webhookCall->id, $eventPayload->id);
+
+            return true;
+        });
+
+        $this->assertEquals($webhookCall->id, cache('dummyjob')->id);
+    }
+
+    /** @test */
+    public function it_can_handle_a_valid_request_even_with_wrong_case()
+    {
+        $payload = [
+            'event-data' => [
+                'event' => 'mY.tYpE',
+                'key' => 'value',
+            ],
+        ];
+
+        Arr::set($payload, 'signature', $this->determineMailgunSignature($payload));
+
+        $this
+            ->postJson('mailgun-webhooks', $payload)
+            ->assertSuccessful();
+
+        $this->assertCount(1, WebhookCall::get());
+
+        $webhookCall = WebhookCall::first();
+
         $this->assertNull($webhookCall->exception);
 
         Event::assertDispatched('mailgun-webhooks::my.type', function ($event, $eventPayload) use ($webhookCall) {

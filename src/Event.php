@@ -4,31 +4,32 @@ namespace BinaryCats\MailgunWebhooks;
 
 use BinaryCats\MailgunWebhooks\Contracts\WebhookEvent;
 
-class Event implements WebhookEvent
+final class Event implements WebhookEvent
 {
     /**
      * Attributes from the event.
      *
-     * @var array
+     * @var mixed[]
      */
-    public $attributes = [];
+    public array $attributes = [];
 
     /**
      * Create new Event.
      *
-     * @param array $attributes
+     * @param mixed[] $attributes
      */
-    public function __construct($attributes)
+    public function __construct(array $attributes)
     {
         $this->attributes = $attributes;
     }
 
     /**
-     * Construct the event.
+     * Static event constructor
      *
-     * @return Event
+     * @param mixed[] $data
+     * @return static
      */
-    public static function constructFrom($data): self
+    public static function constructFrom(array $data): self
     {
         return new static($data);
     }

@@ -4,38 +4,39 @@ namespace BinaryCats\MailgunWebhooks;
 
 use Illuminate\Support\Arr;
 
-class WebhookSignature
+/**
+ * @property string $signature Resolves from $signatureArray
+ * @property string|int $timestamp Resolves from $signatureArray
+ * @property string $token Resolves from $signatureArray
+ */
+final class WebhookSignature
 {
     /**
-     * Signature array.
-     *
-     * @var array
+     * @var string[]
      */
-    protected $signatureArray;
+    protected array $signatureArray;
 
     /**
      * Signature secret.
      *
      * @var string
      */
-    protected $secret;
+    protected string $secret;
 
     /**
-     * Create new Signature.
-     *
-     * @param array  $signatureArray
-     * @param string $secret
+     * @param  string[]  $signatureArray
+     * @param  string  $secret
      */
-    public function __construct(array $signatureArray, string $secret)
+    public function __construct(array $signatureArray , string $secret)
     {
         $this->signatureArray = $signatureArray;
         $this->secret = $secret;
     }
 
     /**
-     * Statis accessor into the class constructor.
+     * Static accessor into the class constructor.
      *
-     * @param  array  $signatureArray
+     * @param  string[]  $signatureArray
      * @param  string $secret
      * @return WebhookSignature static
      */

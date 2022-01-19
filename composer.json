@@ -18,42 +18,40 @@
         }
     ],
     "require": {
-        "php": "^7.2|^8.0",
-        "illuminate/support": "~5.8.0|^6.0|^7.0|^8.0",
+        "php": "^7.4|^8.0",
+        "illuminate/support": "^8.0|^9.0",
         "spatie/laravel-webhook-client": "^2.0"
     },
     "require-dev": {
-        "orchestra/testbench": "~3.8.0|^4.0|^5.0|^6.0",
-        "phpunit/phpunit": "^8.2|^9.0"
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.3.3"
     },
     "autoload": {
         "psr-4": {
-            "BinaryCats\\MailgunWebhooks\\": "src"
+            "BinaryCats\\MailgunWebhooks\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "BinaryCats\\MailgunWebhooks\\Tests\\": "tests"
+            "Tests\\": "tests/"
         }
     },
     "suggest": {
             "binary-cats/laravel-mail-helpers": "^6.0"
     },
     "scripts": {
-        "test": "vendor/bin/phpunit --color=always",
-        "check": [
-            "php-cs-fixer fix --ansi --dry-run --diff",
-            "phpcs --report-width=200 --report-summary  --report-full src/ tests/ --standard=PSR2 -n",
-            "phpmd src/,tests/ text ./phpmd.xml.dist"
-        ],
-        "fix": [
-            "php-cs-fixer fix --ansi"
-        ]
+        "analyze": "./vendor/bin/phpstan analyse src --memory-limit=2G",
+        "coverage": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-html coverage -d pcov.enabled",
+        "test": "./vendor/bin/phpunit --color=always -vvv"
     },
     "config": {
+        "optimize-autoloader": true,
         "sort-packages": true
     },
     "extra": {
+        "branch-alias": {
+            "dev-master": "2.x-dev"
+        },
         "laravel": {
             "providers": [
                 "BinaryCats\\MailgunWebhooks\\MailgunWebhooksServiceProvider"
