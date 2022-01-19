@@ -25,7 +25,7 @@ class ProcessMailgunWebhookJob extends ProcessWebhookJob
     {
         $type = Arr::get($this->webhookCall, "payload.{$this->key}");
 
-        if (!$type) {
+        if (! $type) {
             throw WebhookFailed::missingType($this->webhookCall);
         }
 
@@ -37,7 +37,7 @@ class ProcessMailgunWebhookJob extends ProcessWebhookJob
             return;
         }
 
-        if (!class_exists($jobClass)) {
+        if (! class_exists($jobClass)) {
             throw WebhookFailed::jobClassDoesNotExist($jobClass, $this->webhookCall);
         }
 
