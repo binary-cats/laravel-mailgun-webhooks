@@ -12,9 +12,8 @@ class MailgunSignatureValidator implements SignatureValidator
     /**
      * True if the signature has been valiates.
      *
-     * @param  \Illuminate\Http\Request       $request
-     * @param  \Spatie\WebhookClient\WebhookConfig $config
-     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Spatie\WebhookClient\WebhookConfig  $config
      * @return bool
      */
     public function isValid(Request $request, WebhookConfig $config): bool
@@ -38,7 +37,7 @@ class MailgunSignatureValidator implements SignatureValidator
     /**
      * Validate the incoming signature' schema.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return string[]
      */
     protected function signature(Request $request): array
