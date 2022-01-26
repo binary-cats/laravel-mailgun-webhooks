@@ -30,6 +30,7 @@ class MailgunWebhookCallTest extends TestCase
                     'key' => 'value',
                 ],
             ],
+            'url' => '/webhooks/mailgun.com',
         ]);
 
         $this->processMailgunWebhookJob = new ProcessMailgunWebhookJob($this->webhookCall);
