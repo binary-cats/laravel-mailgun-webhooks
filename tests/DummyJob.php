@@ -16,7 +16,7 @@ class DummyJob
     /**
      * Create new Job.
      *
-     * @param \Spatie\WebhookClient\Models\WebhookCall $webhookCall
+     * @param  \Spatie\WebhookClient\Models\WebhookCall  $webhookCall
      */
     public function __construct(WebhookCall $webhookCall)
     {

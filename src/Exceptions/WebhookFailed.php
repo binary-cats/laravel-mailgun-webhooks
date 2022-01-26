@@ -41,8 +41,9 @@ final class WebhookFailed extends Exception
     {
         return new static("Webhook call id `{$webhookCall->getKey()}` did not contain a type. Valid Mailgun webhook calls should always contain a type.");
     }
+
     /**
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
     public function render($request)

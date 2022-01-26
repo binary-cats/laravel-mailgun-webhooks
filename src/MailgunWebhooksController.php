@@ -12,8 +12,8 @@ class MailgunWebhooksController
     /**
      * Invoke controller method.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  string|null $configKey
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string|null  $configKey
      * @return \Illuminate\Http\Response
      */
     public function __invoke(Request $request, string $configKey = null)
