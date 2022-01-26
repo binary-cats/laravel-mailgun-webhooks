@@ -13,7 +13,11 @@ This package will not handle what should be done after the webhook request has b
 
 Before using this package we highly recommend reading [the entire documentation on webhooks over at Mailgun](https://documentation.mailgun.com/en/latest/api-webhooks.html).
 
-This package is an almost line-to-line adapted copy of absolutely amazing [spatie/laravel-stripe-webhooks](https://github.com/spatie/laravel-stripe-webhooks)
+This package is an adapted copy of absolutely amazing [spatie/laravel-stripe-webhooks](https://github.com/spatie/laravel-stripe-webhooks)
+
+## Upgrade
+
+If you are upgrading from previous version, please note that spatie/laravel-webhook-client has been upgraded to ^3.0 - which adds an extra field into the webhooks table. Read [upgrading instructions](https://github.com/spatie/laravel-webhook-client/blob/main/UPGRADING.md) for more details.  
 
 ## Installation
 
@@ -47,6 +51,9 @@ return [
      *
      * You can find a list of Mailgun webhook types here:
      * https://documentation.mailgun.com/en/latest/api-webhooks.html#webhooks.
+     * 
+     * The package will automatically convert the keys to lowercase, but you should
+     * be congnisant of the fact that array keys are case sensitive
      */
     'jobs' => [
         // 'delivered' => \BinaryCats\MailgunWebhooks\Jobs\HandleDelivered::class,
@@ -111,6 +118,8 @@ If the signature is not valid, the request will not be logged in the `webhook_ca
 If something goes wrong during the webhook request the thrown exception will be saved in the `exception` column. In that case the controller will send a `500` instead of `200`.
 
 There are two ways this package enables you to handle webhook requests: you can opt to queue a job or listen to the events the package will fire.
+
+**Due to the apparent differences between MailGun sandbox and production environment event casing, the package will ALWAYS cast mailgun events to lowercase - so your configured keys must be lowercase, too**
 
 **The package does not handle legacy webhooks, as they have a different schema.** Let me know if this is something that is needed.
 
