@@ -5,7 +5,7 @@ namespace BinaryCats\MailgunWebhooks;
 use BinaryCats\MailgunWebhooks\Exceptions\WebhookFailed;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Spatie\WebhookClient\ProcessWebhookJob;
+use Spatie\WebhookClient\Jobs\ProcessWebhookJob;
 
 class ProcessMailgunWebhookJob extends ProcessWebhookJob
 {
