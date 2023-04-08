@@ -79,7 +79,7 @@ In the `signing_secret` key of the config file you should add a valid webhook se
 
 Next, you must publish the migration with:
 ```bash
-php artisan vendor:publish --provider="Spatie\WebhookClient\WebhookClientServiceProvider" --tag="migrations"
+php artisan vendor:publish --provider="Spatie\WebhookClient\WebhookClientServiceProvider" --tag="webhook-client-migrations"
 ```
 
 After migration has been published you can create the `webhook_calls` table by running the migrations:
