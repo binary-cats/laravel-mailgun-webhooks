@@ -22,6 +22,7 @@ class Webhook
         if (! WebhookSignature::make($signature, $secret)->verify()) {
             throw WebhookFailed::invalidSignature();
         }
+
         // Make an event
         return Event::constructFrom($payload);
     }
