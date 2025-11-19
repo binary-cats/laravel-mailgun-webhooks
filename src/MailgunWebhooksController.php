@@ -16,7 +16,7 @@ class MailgunWebhooksController
      * @param  string|null  $configKey
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request, string|null $configKey = null)
+    public function __invoke(Request $request, ?string $configKey = null)
     {
         $webhookConfig = new WebhookConfig([
             'name' => 'mailgun',
