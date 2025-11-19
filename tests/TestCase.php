@@ -85,7 +85,7 @@ abstract class TestCase extends OrchestraTestCase
      * @param  string|null  $configKey
      * @return array
      */
-    protected function determineMailgunSignature(array $payload, string $configKey = null): array
+    protected function determineMailgunSignature(array $payload, ?string $configKey = null): array
     {
         $secret = ($configKey) ?
             config("mailgun-webhooks.signing_secret_{$configKey}") :
