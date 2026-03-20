@@ -6,6 +6,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
 use Spatie\WebhookClient\Models\WebhookCall;
+use PHPUnit\Framework\Attributes\Test;
 
 class IntegrationTest extends TestCase
 {
@@ -23,8 +24,8 @@ class IntegrationTest extends TestCase
         cache()->clear();
     }
 
-    /** @test */
-    public function it_can_handle_a_valid_request()
+    #[Test]
+    public function it_can_handle_a_valid_request(): void
     {
         $payload = [
             'event-data' => [
@@ -57,8 +58,8 @@ class IntegrationTest extends TestCase
         $this->assertEquals($webhookCall->id, cache('dummyjob')->id);
     }
 
-    /** @test */
-    public function it_can_handle_a_valid_request_even_with_wrong_case()
+    #[Test]
+    public function it_can_handle_a_valid_request_even_with_wrong_case(): void
     {
         $payload = [
             'event-data' => [
@@ -89,7 +90,8 @@ class IntegrationTest extends TestCase
         $this->assertEquals($webhookCall->id, cache('dummyjob')->id);
     }
 
-    public function in_will_ignore_empty_reququest()
+    #[Test]
+    public function in_will_ignore_empty_reququest(): void
     {
         $payload = [];
 
@@ -106,7 +108,8 @@ class IntegrationTest extends TestCase
         $this->assertNull(cache('dummyjob'));
     }
 
-    public function in_will_ignore_unsinged_reququest()
+    #[Test]
+    public function in_will_ignore_unsinged_reququest(): void
     {
         $payload = [
             'event-data' => [
@@ -126,8 +129,8 @@ class IntegrationTest extends TestCase
         $this->assertNull(cache('dummyjob'));
     }
 
-    /** @test */
-    public function a_request_with_an_invalid_signature_wont_be_logged()
+    #[Test]
+    public function a_request_with_an_invalid_signature_wont_be_logged(): void
     {
         $payload = [
             'event-data' => [
@@ -149,8 +152,8 @@ class IntegrationTest extends TestCase
         $this->assertNull(cache('dummyjob'));
     }
 
-    /** @test */
-    public function a_request_with_an_invalid_payload_will_be_logged_but_events_and_jobs_will_not_be_dispatched()
+    #[Test]
+    public function a_request_with_an_invalid_payload_will_be_logged_but_events_and_jobs_will_not_be_dispatched(): void
     {
         $payload = ['invalid_payload'];
 
@@ -179,8 +182,8 @@ class IntegrationTest extends TestCase
         $this->assertNull(cache('dummyjob'));
     }
 
-    /** @test * */
-    public function a_request_with_a_config_key_will_use_the_correct_signing_secret()
+    #[Test]
+    public function a_request_with_a_config_key_will_use_the_correct_signing_secret(): void
     {
         config()->set('mailgun-webhooks.signing_secret', 'secret1');
         config()->set('mailgun-webhooks.signing_secret_somekey', 'secret2');
@@ -199,8 +202,8 @@ class IntegrationTest extends TestCase
             ->assertSuccessful();
     }
 
-    /** @test */
-    public function an_invalid_signature_value_generates_a_500_error()
+    #[Test]
+    public function an_invalid_signature_value_generates_a_500_error(): void
     {
         $payload = [
             'event-data' => [
