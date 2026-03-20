@@ -48,6 +48,12 @@ class MailgunSignatureValidator implements SignatureValidator
             'signature.token' => 'required',
         ]);
 
+        // Check if the payload (excluding signature) is empty
+        $payload = collect($request->all())->except('signature')->all();
+        if (empty($payload)) {
+            $request->validate(['payload' => 'required']);
+        }
+
         return $validated['signature'];
     }
 }

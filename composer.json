@@ -19,12 +19,12 @@
     ],
     "require": {
         "php": "^8.0",
-        "illuminate/support": "^8.0|^9.0|^10.0|^11.0|^12.0|^13.0",
+        "illuminate/support": "^11.0|^12.0|^13.0",
         "spatie/laravel-webhook-client": "^3.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^6.0|^7.0|^8.0|^9.0|^10.0|^11.0",
-        "phpunit/phpunit": "^9.4|^10.0|^11.5.3|^12.5.12"
+        "orchestra/testbench": "^9.0|^10.0|^11.0",
+        "phpunit/phpunit": "^10.0|^11.5.3|^12.5.12"
     },
     "autoload": {
         "psr-4": {
@@ -37,11 +37,13 @@
         }
     },
     "suggest": {
-        "binary-cats/laravel-lob-webhooks": "^9.0"
+        "binary-cats/laravel-bigbluebutton-webhooks": "Handle bigbluebutton webhooks in your Laravel application",
+        "binary-cats/laravel-lob-webhooks": "Handle lob.com webhooks in your Laravel application",
+        "binary-cats/laravel-zoom-webhooks": "Handle Zoom webhooks in your Laravel application"
     },
     "scripts": {
         "coverage": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-html coverage -d pcov.enabled",
-        "test": "./vendor/bin/phpunit --color=always -vvv"
+        "test": "./vendor/bin/phpunit --color=always"
     },
     "config": {
         "optimize-autoloader": true,

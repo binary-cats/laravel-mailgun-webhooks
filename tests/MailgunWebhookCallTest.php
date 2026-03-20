@@ -5,6 +5,7 @@ namespace Tests;
 use BinaryCats\MailgunWebhooks\ProcessMailgunWebhookJob;
 use Illuminate\Support\Facades\Event;
 use Spatie\WebhookClient\Models\WebhookCall;
+use PHPUnit\Framework\Attributes\Test;
 
 class MailgunWebhookCallTest extends TestCase
 {
@@ -14,7 +15,7 @@ class MailgunWebhookCallTest extends TestCase
     /** @var \Spatie\WebhookClient\Models\WebhookCall */
     public $webhookCall;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -36,16 +37,16 @@ class MailgunWebhookCallTest extends TestCase
         $this->processMailgunWebhookJob = new ProcessMailgunWebhookJob($this->webhookCall);
     }
 
-    /** @test */
-    public function it_will_fire_off_the_configured_job()
+    #[Test]
+    public function it_will_fire_off_the_configured_job(): void
     {
         $this->processMailgunWebhookJob->handle();
 
         $this->assertEquals($this->webhookCall->id, cache('dummyjob')->id);
     }
 
-    /** @test */
-    public function it_will_not_dispatch_a_job_for_another_type()
+    #[Test]
+    public function it_will_not_dispatch_a_job_for_another_type(): void
     {
         config(['mailgun-webhooks.jobs' => ['another_type' => DummyJob::class]]);
 
@@ -54,8 +55,8 @@ class MailgunWebhookCallTest extends TestCase
         $this->assertNull(cache('dummyjob'));
     }
 
-    /** @test */
-    public function it_will_not_dispatch_jobs_when_no_jobs_are_configured()
+    #[Test]
+    public function it_will_not_dispatch_jobs_when_no_jobs_are_configured(): void
     {
         config(['mailgun-webhooks.jobs' => []]);
 
@@ -64,8 +65,8 @@ class MailgunWebhookCallTest extends TestCase
         $this->assertNull(cache('dummyjob'));
     }
 
-    /** @test */
-    public function it_will_dispatch_events_even_when_no_corresponding_job_is_configured()
+    #[Test]
+    public function it_will_dispatch_events_even_when_no_corresponding_job_is_configured(): void
     {
         config(['mailgun-webhooks.jobs' => ['another_type' => DummyJob::class]]);
 

@@ -13,7 +13,7 @@ abstract class TestCase extends OrchestraTestCase
     /**
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -40,7 +40,7 @@ abstract class TestCase extends OrchestraTestCase
     /**
      * @return void
      */
-    protected function setUpDatabase()
+    protected function setUpDatabase(): void
     {
         $migration = include __DIR__.'/../vendor/spatie/laravel-webhook-client/database/migrations/create_webhook_calls_table.php.stub';
 
@@ -51,7 +51,7 @@ abstract class TestCase extends OrchestraTestCase
      * @param  \Illuminate\Foundation\Application  $app
      * @return array
      */
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [
             MailgunWebhooksServiceProvider::class,
@@ -61,7 +61,7 @@ abstract class TestCase extends OrchestraTestCase
     /**
      * @return void
      */
-    protected function disableExceptionHandling()
+    protected function disableExceptionHandling(): void
     {
         $this->app->instance(ExceptionHandler::class, new class extends Handler
         {
