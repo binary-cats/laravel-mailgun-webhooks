@@ -316,7 +316,7 @@ Big shout-out to [Spatie](https://spatie.be/) for their work, which is a huge in
 
 ## Support us
 
-Binary Cats is a webdesign agency based in Illinois, US.
+[Binary Cats](https://binarycats.dev) is a webdesign agency based in Illinois, US.
 
 ## License
 
