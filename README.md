@@ -2,7 +2,7 @@
 
 # Handle Mailgun Webhooks in a Laravel application
 
-![https://github.com/binary-cats/laravel-mailgun-webhooks/actions](https://github.com/binary-cats/laravel-mailgun-webhooks/workflows/Laravel/badge.svg)
+![https://github.com/binary-cats/laravel-mailgun-webhooks/actions](https://github.com/binary-cats/laravel-mailgun-webhooks/workflows/run-tests/badge.svg)
 ![https://github.styleci.io/repos/230519748](https://github.styleci.io/repos/230519748/shield)
 ![https://scrutinizer-ci.com/g/binary-cats/laravel-mailgun-webhooks/](https://scrutinizer-ci.com/g/binary-cats/laravel-mailgun-webhooks/badges/quality-score.png?b=master)
 
